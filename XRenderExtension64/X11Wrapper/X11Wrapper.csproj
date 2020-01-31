@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0FFDCE9C-1A4F-4E75-B974-7E3C09E95202}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>X11Wrapper</RootNamespace>
+    <AssemblyName>X11Wrapper</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="X11Contracts.cs" />
+    <Compile Include="X11Event.cs" />
+    <Compile Include="X11lib.cs" />
+    <Compile Include="X11Utils.cs" />
+    <Compile Include="Xpmlib.cs" />
+    <Compile Include="SimpleLog.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="AlternativeBase64.cs" />
+    <Compile Include="FontAndText\X11FontData.cs" />
+    <Compile Include="FontAndText\FontSpecificationList.cs" />
+    <Compile Include="DrawingSupport\X11Surface.cs" />
+    <Compile Include="DrawingSupport\X11Graphics.cs" />
+    <Compile Include="DrawingSupport\X11PaintEventArgs.cs" />
+    <Compile Include="FontAndText\Text.Place.cs" />
+    <Compile Include="FontAndText\Text.StyleIndex.cs" />
+    <Compile Include="FontAndText\Text.Style.cs" />
+    <Compile Include="FontAndText\Text.StyleList.cs" />
+    <Compile Include="FontAndText\System.String.cs" />
+    <Compile Include="FontAndText\X11FontService.cs" />
+    <Compile Include="DrawingSupport\X11ColorNames.cs" />
+    <Compile Include="DrawingSupport\TColor.cs" />
+    <Compile Include="DrawingSupport\X11ColorModel.cs" />
+    <Compile Include="FontAndText\TWstring.cs" />
+    <Compile Include="FontAndText\TWstringBuilder.cs" />
+    <Compile Include="FontAndText\Text.StyleText.cs" />
+    <Compile Include="FontAndText\Text.TStyleChar.cs" />
+    <Compile Include="DrawingSupport\X11PathSegmentCollection.cs" />
+    <Compile Include="DrawingSupport\X11Graphic.cs">
+      <CustomToolNamespace>-</CustomToolNamespace>
+    </Compile>
+    <Compile Include="DrawingSupport\X11PathSegment.cs" />
+    <Compile Include="DrawingSupport\X11PathFigure.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Media\Matrix.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Point.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Rect.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Vector.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Size.cs" />
+    <Compile Include="DrawingSupport\X11BrushInfo.cs" />
+    <Compile Include="DrawingSupport\X11PenInfo.cs" />
+    <Compile Include="DrawingSupport\CSize.cs" />
+    <Compile Include="DrawingSupport\Mathematics.BezierCurve2D.cs" />
+    <Compile Include="DrawingSupport\Mathematics.ArcCurve2D.cs" />
+    <Compile Include="DrawingSupport\Mathematics.HitTest.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Media\SweepDirection.cs" />
+    <Compile Include="ReplicaAndExtensions\System\Windows\Media\PointConverter.cs" />
+    <Compile Include="DrawingSupport\X11IPicture.cs" />
+    <Compile Include="DrawingSupport\X11Image.cs" />
+    <Compile Include="XRenderLib.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\State\" />
+    <Folder Include="Images\Font\" />
+    <Folder Include="Images\Ribbon\" />
+    <Folder Include="Images\Ribbon\Gtk2\" />
+    <Folder Include="Images\Generic\" />
+    <Folder Include="Images\Ribbon\Win\" />
+    <Folder Include="Images\FileStorage\" />
+    <Folder Include="Images\FileStorage\Win\" />
+    <Folder Include="Images\FileStorage\Gtk2\" />
+    <Folder Include="Images\Text\" />
+    <Folder Include="Images\Text\Win\" />
+    <Folder Include="Images\Text\Gtk2\" />
+    <Folder Include="Images\Generic\Win\" />
+    <Folder Include="Images\Generic\Gtk2\" />
+    <Folder Include="FontAndText\" />
+    <Folder Include="DrawingSupport\" />
+    <Folder Include="ReplicaAndExtensions\" />
+    <Folder Include="ReplicaAndExtensions\System\" />
+    <Folder Include="ReplicaAndExtensions\System\Windows\" />
+    <Folder Include="ReplicaAndExtensions\System\Windows\Media\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\State\attention24.bmp" />
+    <None Include="Images\State\quest24.bmp" />
+    <None Include="Images\State\info24.bmp" />
+    <None Include="Images\State\error24.bmp" />
+    <None Include="Images\State\warn24.bmp" />
+    <None Include="Images\State\attention16.bmp" />
+    <None Include="Images\State\attention32.bmp" />
+    <None Include="Images\State\attention48.bmp" />
+    <None Include="Images\State\error16.bmp" />
+    <None Include="Images\State\error32.bmp" />
+    <None Include="Images\State\error48.bmp" />
+    <None Include="Images\State\quest16.bmp" />
+    <None Include="Images\State\quest32.bmp" />
+    <None Include="Images\State\quest48.bmp" />
+    <None Include="Images\State\info16.bmp" />
+    <None Include="Images\State\info48.bmp" />
+    <None Include="Images\State\info32.bmp" />
+    <None Include="Images\State\warn16.bmp" />
+    <None Include="Images\State\warn48.bmp" />
+    <None Include="Images\State\warn32.bmp" />
+    <None Include="Images\Font\font_bmp16.bmp" />
+    <None Include="Images\Font\font_bmp24.bmp" />
+    <None Include="Images\Font\font_of24.bmp" />
+    <None Include="Images\Font\font_of32.bmp" />
+    <None Include="Images\Font\font_bmp32.bmp" />
+    <None Include="Images\Font\font_bmp48.bmp" />
+    <None Include="Images\Font\font_of16.bmp" />
+    <None Include="Images\Font\font_of48.bmp" />
+    <None Include="Images\Font\font_tt16.bmp" />
+    <None Include="Images\Font\font_tt24.bmp" />
+    <None Include="Images\Font\font_tt48.bmp" />
+    <None Include="Images\Font\font_tt32.bmp" />
+    <None Include="Images\Generic\cancel16.bmp" />
+    <None Include="Images\Generic\cancel24.bmp" />
+    <None Include="Images\Generic\cancel32.bmp" />
+    <None Include="Images\Generic\cancel48.bmp" />
+    <None Include="Images\Generic\file48.bmp" />
+    <None Include="Images\Generic\file16.bmp" />
+    <None Include="Images\Generic\file24.bmp" />
+    <None Include="Images\Generic\file32.bmp" />
+    <None Include="Images\Generic\ok16.bmp" />
+    <None Include="Images\Generic\ok24.bmp" />
+    <None Include="Images\Generic\radiooff.bmp" />
+    <None Include="Images\Generic\ok32.bmp" />
+    <None Include="Images\Generic\ok48.bmp" />
+    <None Include="Images\Generic\radioon.bmp" />
+    <None Include="Images\Generic\textformatsub.bmp" />
+    <None Include="Images\Generic\textformatsuper.bmp" />
+    <None Include="Images\Generic\toggleon.bmp" />
+    <None Include="Images\Generic\toggleoff.bmp" />
+    <None Include="Images\Ribbon\Win\close32.bmp" />
+    <None Include="Images\Ribbon\Win\exit32.bmp" />
+    <None Include="Images\Ribbon\Win\new32.bmp" />
+    <None Include="Images\Ribbon\Win\open32.bmp" />
+    <None Include="Images\Ribbon\Win\prepare32.bmp" />
+    <None Include="Images\Ribbon\Win\prepare_checkcompatibility.bmp" />
+    <None Include="Images\Ribbon\Win\prepare_checkdocument.bmp" />
+    <None Include="Images\Ribbon\Win\prepare_encodedocument.bmp" />
+    <None Include="Images\Ribbon\Win\prepare_properties.bmp" />
+    <None Include="Images\Ribbon\Win\print32.bmp" />
+    <None Include="Images\Ribbon\Win\save32.bmp" />
+    <None Include="Images\Ribbon\Win\saveas32.bmp" />
+    <None Include="Images\Ribbon\Win\close16.bmp" />
+    <None Include="Images\Ribbon\Win\open16.bmp" />
+    <None Include="Images\Ribbon\Win\prepare16.bmp" />
+    <None Include="Images\Ribbon\Win\save16.bmp" />
+    <None Include="Images\Ribbon\Win\saveas16.bmp" />
+    <None Include="Images\Ribbon\Win\new16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\save16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\save32.bmp" />
+    <None Include="Images\Ribbon\Gtk2\saveas16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\saveas32.bmp" />
+    <None Include="Images\Ribbon\Gtk2\close16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\close32.bmp" />
+    <None Include="Images\Ribbon\Gtk2\exit16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\exit32.bmp" />
+    <None Include="Images\Ribbon\Gtk2\new16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\new32.bmp" />
+    <None Include="Images\Ribbon\Gtk2\open16.bmp" />
+    <None Include="Images\Ribbon\Gtk2\open32.bmp" />
+    <None Include="Images\Ribbon\Win\exit16alt.bmp" />
+    <None Include="Images\Ribbon\Win\exit16.bmp" />
+    <None Include="Images\FileStorage\Win\computer16.bmp" />
+    <None Include="Images\FileStorage\Win\drive32.bmp" />
+    <None Include="Images\FileStorage\Win\drive16.bmp" />
+    <None Include="Images\FileStorage\Win\computer48.bmp" />
+    <None Include="Images\FileStorage\Win\drive48.bmp" />
+    <None Include="Images\FileStorage\Win\computer32.bmp" />
+    <None Include="Images\FileStorage\Win\computer24.bmp" />
+    <None Include="Images\FileStorage\Win\drive24.bmp" />
+    <None Include="Images\FileStorage\Win\folderclose16.bmp" />
+    <None Include="Images\FileStorage\Win\folderclose32.bmp" />
+    <None Include="Images\FileStorage\Win\folderopen24.bmp" />
+    <None Include="Images\FileStorage\Win\myfolder32.bmp" />
+    <None Include="Images\FileStorage\Win\myfolder48.bmp" />
+    <None Include="Images\FileStorage\Win\folderclose48.bmp" />
+    <None Include="Images\FileStorage\Win\folderopen32.bmp" />
+    <None Include="Images\FileStorage\Win\network48.bmp" />
+    <None Include="Images\FileStorage\Win\folderopen16.bmp" />
+    <None Include="Images\FileStorage\Win\network16.bmp" />
+    <None Include="Images\FileStorage\Win\network32.bmp" />
+    <None Include="Images\FileStorage\Win\myfolder16.bmp" />
+    <None Include="Images\FileStorage\Win\folderclose24.bmp" />
+    <None Include="Images\FileStorage\Win\myfolder24.bmp" />
+    <None Include="Images\FileStorage\Win\network24.bmp" />
+    <None Include="Images\FileStorage\Win\folderopen48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\computer16.bmp" />
+    <None Include="Images\FileStorage\Gtk2\drive16.bmp" />
+    <None Include="Images\FileStorage\Gtk2\folderopen32.bmp" />
+    <None Include="Images\FileStorage\Gtk2\network48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\folderopen24.bmp" />
+    <None Include="Images\FileStorage\Gtk2\folderclose32.bmp" />
+    <None Include="Images\FileStorage\Gtk2\drive32.bmp" />
+    <None Include="Images\FileStorage\Gtk2\computer48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\myfolder24.bmp" />
+    <None Include="Images\FileStorage\Gtk2\myfolder16.bmp" />
+    <None Include="Images\FileStorage\Gtk2\computer24.bmp" />
+    <None Include="Images\FileStorage\Gtk2\drive24.bmp" />
+    <None Include="Images\FileStorage\Gtk2\computer32.bmp" />
+    <None Include="Images\FileStorage\Gtk2\myfolder48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\network16.bmp" />
+    <None Include="Images\FileStorage\Gtk2\myfolder32.bmp" />
+    <None Include="Images\FileStorage\Gtk2\folderclose24.bmp" />
+    <None Include="Images\FileStorage\Gtk2\foldeclose48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\drive48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\network24.bmp" />
+    <None Include="Images\FileStorage\Gtk2\network32.bmp" />
+    <None Include="Images\FileStorage\Gtk2\folderopen16.bmp" />
+    <None Include="Images\FileStorage\Gtk2\foldeopen48.bmp" />
+    <None Include="Images\FileStorage\Gtk2\folderclose16.bmp" />
+    <None Include="Images\Text\Win\textalignbottom.bmp" />
+    <None Include="Images\Text\Win\textaligncenter.bmp" />
+    <None Include="Images\Text\Win\textalignleft.bmp" />
+    <None Include="Images\Text\Win\textalignright.bmp" />
+    <None Include="Images\Text\Win\textalignjustify.bmp" />
+    <None Include="Images\Text\Win\textalignmiddle.bmp" />
+    <None Include="Images\Text\Win\textaligntop.bmp" />
+    <None Include="Images\Text\Win\textformatbold.bmp" />
+    <None Include="Images\Text\Win\textformatitalic.bmp" />
+    <None Include="Images\Text\Win\textformatunderline.bmp" />
+    <None Include="Images\Generic\Win\arrowdown16.bmp" />
+    <None Include="Images\Generic\Win\arrowleft16.bmp" />
+    <None Include="Images\Generic\Win\arrowright16.bmp" />
+    <None Include="Images\Generic\Win\arrowup16.bmp" />
+    <None Include="Images\Text\Gtk2\textaligmiddle.bmp" />
+    <None Include="Images\Text\Gtk2\textalignbottom.bmp" />
+    <None Include="Images\Text\Gtk2\textaligncenter.bmp" />
+    <None Include="Images\Text\Gtk2\textalignjustify.bmp" />
+    <None Include="Images\Text\Gtk2\textalignleft.bmp" />
+    <None Include="Images\Text\Gtk2\textalignright.bmp" />
+    <None Include="Images\Text\Gtk2\textaligntop.bmp" />
+    <None Include="Images\Text\Gtk2\textformatbold.bmp" />
+    <None Include="Images\Text\Gtk2\textformatindent.bmp" />
+    <None Include="Images\Text\Gtk2\textformatitalic.bmp" />
+    <None Include="Images\Text\Gtk2\textformatunderline.bmp" />
+    <None Include="Images\Text\Gtk2\textformatunindent.bmp" />
+    <None Include="Images\Generic\Gtk2\arrowdown16.bmp" />
+    <None Include="Images\Generic\Gtk2\arrowleft16.bmp" />
+    <None Include="Images\Generic\Gtk2\arrowright16.bmp" />
+    <None Include="Images\Generic\Gtk2\arrowup16.bmp" />
+    <None Include="Images\Ribbon\appbutton16.bmp" />
+    <None Include="Images\Generic\pipette16.bmp" />
+    <None Include="Images\Generic\pipette24.bmp" />
+    <None Include="Images\Generic\pipette32.bmp" />
+    <None Include="Images\Generic\pipette48.bmp" />
+    <None Include="Images\Generic\abort16.bmp" />
+    <None Include="Images\Generic\abort24.bmp" />
+    <None Include="Images\Generic\abort32.bmp" />
+    <None Include="Images\Generic\abort48.bmp" />
+    <None Include="Images\Generic\ignore16.bmp" />
+    <None Include="Images\Generic\ignore24.bmp" />
+    <None Include="Images\Generic\ignore32.bmp" />
+    <None Include="Images\Generic\ignore48.bmp" />
+    <None Include="Images\Generic\retry16.bmp" />
+    <None Include="Images\Generic\retry24.bmp" />
+    <None Include="Images\Generic\retry32.bmp" />
+    <None Include="Images\Generic\retry48.bmp" />
+    <None Include="Images\Generic\no16.bmp" />
+    <None Include="Images\Generic\no24.bmp" />
+    <None Include="Images\Generic\no32.bmp" />
+    <None Include="Images\Generic\no48.bmp" />
+    <None Include="Images\Generic\yes16.bmp" />
+    <None Include="Images\Generic\yes24.bmp" />
+    <None Include="Images\Generic\yes32.bmp" />
+    <None Include="Images\Generic\yes48.bmp" />
+    <None Include="Images\Generic\Gtk2\bottom16.bmp" />
+    <None Include="Images\Generic\Gtk2\bottom24.bmp" />
+    <None Include="Images\Generic\Gtk2\bottom32.bmp" />
+    <None Include="Images\Generic\Gtk2\bottom48.bmp" />
+    <None Include="Images\Generic\Gtk2\copy16.bmp" />
+    <None Include="Images\Generic\Gtk2\copy24.bmp" />
+    <None Include="Images\Generic\Gtk2\copy32.bmp" />
+    <None Include="Images\Generic\Gtk2\copy48.bmp" />
+    <None Include="Images\Generic\Gtk2\cut16.bmp" />
+    <None Include="Images\Generic\Gtk2\cut24.bmp" />
+    <None Include="Images\Generic\Gtk2\cut32.bmp" />
+    <None Include="Images\Generic\Gtk2\cut48.bmp" />
+    <None Include="Images\Generic\Gtk2\down16.bmp" />
+    <None Include="Images\Generic\Gtk2\down24.bmp" />
+    <None Include="Images\Generic\Gtk2\down32.bmp" />
+    <None Include="Images\Generic\Gtk2\down48.bmp" />
+    <None Include="Images\Generic\Gtk2\paste16.bmp" />
+    <None Include="Images\Generic\Gtk2\paste24.bmp" />
+    <None Include="Images\Generic\Gtk2\paste32.bmp" />
+    <None Include="Images\Generic\Gtk2\paste48.bmp" />
+    <None Include="Images\Generic\Gtk2\top16.bmp" />
+    <None Include="Images\Generic\Gtk2\top24.bmp" />
+    <None Include="Images\Generic\Gtk2\top32.bmp" />
+    <None Include="Images\Generic\Gtk2\top48.bmp" />
+    <None Include="Images\Generic\Gtk2\up16.bmp" />
+    <None Include="Images\Generic\Gtk2\up24.bmp" />
+    <None Include="Images\Generic\Gtk2\up32.bmp" />
+    <None Include="Images\Generic\Gtk2\up48.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomin16.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomin24.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomin32.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomin48.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomout16.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomout24.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomout32.bmp" />
+    <None Include="Images\Generic\Gtk2\zoomout48.bmp" />
+    <None Include="Images\Generic\Win\bottom16.bmp" />
+    <None Include="Images\Generic\Win\bottom24.bmp" />
+    <None Include="Images\Generic\Win\bottom32.bmp" />
+    <None Include="Images\Generic\Win\bottom48.bmp" />
+    <None Include="Images\Generic\Win\copy16.bmp" />
+    <None Include="Images\Generic\Win\copy24.bmp" />
+    <None Include="Images\Generic\Win\copy32.bmp" />
+    <None Include="Images\Generic\Win\copy48.bmp" />
+    <None Include="Images\Generic\Win\cut16.bmp" />
+    <None Include="Images\Generic\Win\cut24.bmp" />
+    <None Include="Images\Generic\Win\cut32.bmp" />
+    <None Include="Images\Generic\Win\cut48.bmp" />
+    <None Include="Images\Generic\Win\down16.bmp" />
+    <None Include="Images\Generic\Win\down24.bmp" />
+    <None Include="Images\Generic\Win\down32.bmp" />
+    <None Include="Images\Generic\Win\down48.bmp" />
+    <None Include="Images\Generic\Win\paste16.bmp" />
+    <None Include="Images\Generic\Win\paste24.bmp" />
+    <None Include="Images\Generic\Win\paste32.bmp" />
+    <None Include="Images\Generic\Win\paste48.bmp" />
+    <None Include="Images\Generic\Win\top16.bmp" />
+    <None Include="Images\Generic\Win\top24.bmp" />
+    <None Include="Images\Generic\Win\top32.bmp" />
+    <None Include="Images\Generic\Win\top48.bmp" />
+    <None Include="Images\Generic\Win\up16.bmp" />
+    <None Include="Images\Generic\Win\up24.bmp" />
+    <None Include="Images\Generic\Win\up32.bmp" />
+    <None Include="Images\Generic\Win\up48.bmp" />
+    <None Include="Images\Generic\Win\zoomin16.bmp" />
+    <None Include="Images\Generic\Win\zoomin24.bmp" />
+    <None Include="Images\Generic\Win\zoomin32.bmp" />
+    <None Include="Images\Generic\Win\zoomin48.bmp" />
+    <None Include="Images\Generic\Win\zoomout16.bmp" />
+    <None Include="Images\Generic\Win\zoomout24.bmp" />
+    <None Include="Images\Generic\Win\zoomout32.bmp" />
+    <None Include="Images\Generic\Win\zoomout48.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XawNative\XawNative.cproj">
+      <Project>{AA2918F5-6E1C-4683-B49D-11CEF36C7B8F}</Project>
+      <Name>XawNative</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

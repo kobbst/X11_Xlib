@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AA2918F5-6E1C-4683-B49D-11CEF36C7B8F}</ProjectGuid>
+    <Target>Bin</Target>
+    <Language>C</Language>
+    <Compiler>
+      <Compiler ctype="GccCompiler" />
+    </Compiler>
+    <Packages>
+      <Packages>
+        <Package file="/usr/lib/pkgconfig/xaw6.pc" name="Xaw" IsProject="False" />
+        <Package file="/usr/lib/pkgconfig/x11.pc" name="X11" IsProject="False" />
+        <Package file="/usr/lib/pkgconfig/xt.pc" name="Xt" IsProject="False" />
+      </Packages>
+    </Packages>
+    <Description>Wrapper to interact with C# and Athena widget set.</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <OutputName>libXawNative.so</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <DefineSymbols>MONODEVELOP</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <OptimizationLevel>3</OptimizationLevel>
+    <OutputName>XlibWrapper</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MoreWidgets\Canvas.c" />
+    <Compile Include="XawNative.c" />
+    <Compile Include="transform.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MoreWidgets\CanvasP.h" />
+    <None Include="MoreWidgets\Canvas.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MoreWidgets\" />
+  </ItemGroup>
+</Project>

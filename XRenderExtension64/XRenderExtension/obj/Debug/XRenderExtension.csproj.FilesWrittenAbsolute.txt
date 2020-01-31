@@ -1,0 +1,5 @@
+/home/rupert/Projekte/XRenderExtension64/XRenderExtension/obj/Debug/XRenderExtension.exe
+/home/rupert/Projekte/XRenderExtension64/XRenderExtension/bin/Debug/X11Wrapper.dll
+/home/rupert/Projekte/XRenderExtension64/XRenderExtension/bin/Debug/X11Wrapper.dll.mdb
+/home/rupert/Projekte/XRenderExtension64/XRenderExtension/bin/Debug/XtWrapper.dll
+/home/rupert/Projekte/XRenderExtension64/XRenderExtension/bin/Debug/XtWrapper.dll.mdb

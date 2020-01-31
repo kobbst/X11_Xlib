@@ -1,0 +1,6 @@
+Name: X11Wrapper
+Description: X11Wrapper
+Version: 0.1
+
+Requires: 
+Libs: -r:@expanded_libdir@/@PACKAGE@/X11Wrapper.dll

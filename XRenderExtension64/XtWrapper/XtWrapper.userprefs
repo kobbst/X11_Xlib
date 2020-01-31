@@ -1,0 +1,37 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True">
+          <Node name="XtWrapper" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Xfwf/XfwfWindow.cs" line="187" offsetX="1110" offsetY="3348" expression="scrollInfo" liveUpdate="False" />
+    <Watch file="Xfwf/XfwfWindow.cs" line="661" offsetX="867" offsetY="11484" expression="scrollInfo" liveUpdate="False" />
+    <Watch file="X11/Xrw/SimpleWidgets/XrwCommand.cs" line="338" offsetX="1209" offsetY="4374" expression="clientArea" liveUpdate="False" />
+    <Watch file="X11/Xrw/SimpleWidgets/XrwToggle.cs" line="515" offsetX="705" offsetY="3744" expression="clientArea" liveUpdate="False" />
+    <Watch file="X11/Xrw/SimpleWidgets/XrwToggle.cs" line="369" offsetX="1335" offsetY="2304" expression="preferredSize" liveUpdate="False" />
+    <Watch file="X11Wrapper/X11lib.cs" line="1736" offsetX="957" offsetY="19080" expression="styles" liveUpdate="False" />
+    <Watch file="X11Wrapper/X11lib.cs" line="1757" offsetX="669" offsetY="19728" expression="valueReturn" liveUpdate="False" />
+    <Watch file="X11Wrapper/X11lib.cs" line="1757" offsetX="669" offsetY="19728" expression="valueReturn" liveUpdate="False" />
+    <Watch file="X11Wrapper/X11lib.cs" line="1757" offsetX="669" offsetY="19728" expression="valueReturn" liveUpdate="True" />
+    <Watch file="X11/Xrw/Shells/XrwApplicationShell.cs" line="506" offsetX="777" offsetY="8190" expression="windows" liveUpdate="False" />
+    <Watch file="X11/Xrw/SimpleWidgets/Text.cs" line="527" offsetX="903" offsetY="5706" expression="startTextSize" liveUpdate="False" />
+    <Watch file="X11/Xrw/SimpleWidgets/Text.cs" line="844" offsetX="534" offsetY="7254" expression="_undoList" liveUpdate="False" />
+    <Watch file="X11/Xrw/BaseWidgets/XrwVisibleRectObj.cs" line="825" offsetX="1047" offsetY="12888" expression="boundings" liveUpdate="False" />
+    <Watch file="X11/Xrw/BaseWidgets/XrwVisibleRectObj.cs" line="838" offsetX="1164" offsetY="13122" expression="clientArea" liveUpdate="False" />
+    <Watch file="X11/Xrw/ConstraintWidgets/XrwBox.cs" line="339" offsetX="750" offsetY="4770" expression="_children" liveUpdate="False" />
+    <Watch file="X11/Xrw/ConstraintWidgets/XrwNotebook.cs" line="141" offsetX="264" offsetY="1710" expression="b" liveUpdate="False" />
+    <Watch file="X11Wrapper/X11lib.cs" line="2701" offsetX="1101" offsetY="26388" expression="WeightSlantWidths" liveUpdate="False" />
+    <Watch file="Xrw/Xrw/Shells/XrwApplicationShell.cs" line="989" offsetX="633" offsetY="2772" expression="wmShellClose" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>

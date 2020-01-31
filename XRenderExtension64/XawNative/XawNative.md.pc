@@ -1,0 +1,5 @@
+Name: XawNative
+Description: Wrapper to interact with C# and Athena widget set.
+Version: 0.1
+Libs: -L"/home/rupert/Projekte/XRenderExtension64/XawNative/bin/Debug" -lXawNative.so
+Cflags: -I"/home/rupert/Projekte/XRenderExtension64/XawNative/MoreWidgets"

@@ -1,0 +1,19 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="XRenderExtension/XtWindow.cs">
+    <Files>
+      <File FileName="XRenderExtension/XtWindow.cs" Line="947" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/mono/Projects/XRenderExtension64/XRenderExtension/XtWindow.cs" line="768" />
+      <Breakpoint file="/home/mono/Projects/XRenderExtension64/XRenderExtension/XtWindow.cs" line="486" />
+      <Breakpoint file="/home/mono/Projects/XRenderExtension64/XRenderExtension/XtWindow.cs" line="316" />
+      <Breakpoint file="/home/mono/Projects/XRenderExtension64/XRenderExtension/XtWindow.cs" line="274" />
+      <Breakpoint file="/home/rupert/Projekte/XRenderExtension64/XRenderExtension/XtWindow.cs" line="274" />
+      <Breakpoint file="/home/rupert/Projekte/XRenderExtension64/XRenderExtension/XtWindow.cs" line="455" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
