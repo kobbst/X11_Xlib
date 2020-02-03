@@ -1,4 +1,8 @@
 
+
+#include <X11/Xaw/Dialog.h>
+#include <X11/Xaw/StringDefs.h>
+
 static char *gxGetFileName( void )
 {
     XtAppContext app;
