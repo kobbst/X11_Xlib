@@ -126,8 +126,7 @@ static Boolean point_equal_event( GXLine *line, XEvent *event )
     return pts_equal;
 }
 
-static Boolean segment_selected( GXLinePtr data, XPoint *pt )
-{
+static Boolean segment_selected( GXLinePtr data, XPoint *pt ){
     Boolean found = False;
     int i;
 
@@ -138,8 +137,7 @@ static Boolean segment_selected( GXLinePtr data, XPoint *pt )
     }
     return found;
 }
-static Boolean point_selected( GXLinePtr line, XPoint *pt )
-    {
+static Boolean point_selected( GXLinePtr line, XPoint *pt )  {
     int i, x, y, found = False;
     for( i = 0; (i < line->num_pts) && ! found; i++ ) {
 
@@ -159,8 +157,193 @@ static void line_select( GXObjPtr line ){
     gx_draw_handles( line );
 }
 
+static void line_bounding_handles( GXObjPtr gx_line ){
+    int i, x1, y1, x2, y2, width, height;
+
+    GXLine *line_data = gx_line->data;
+
+    gx_line->handles =
+    (XRectangle *)XtMalloc( sizeof(XRectangle) * 8 );
+
+    gx_line->num_handles = 8;
+    if( gx_line->handles == NULL ) {
+        perror( "Alloc failed for line handles" );
+        gx_line->num_handles = 0;
+    return;
+    }
+    for( i= 0; i < 8; i++ ) {
+        gx_line->handles[i].width = HNDL_SIZE;
+        gx_line->handles[i].height = HNDL_SIZE;
+    }
+
+    get_bounds( line_data->pts, line_data->num_pts,
+    &x1, &y1, &x2, &y2 );
+
+    width = x2 - x1;
+    height = y2 - y1;
+
+    gx_line->handles[0].x = x1 - HNDL_OFFSET - HNDL_SIZE;
+    gx_line->handles[0].y = y1 - HNDL_OFFSET - HNDL_SIZE;
+    
+    gx_line->handles[1].x = x1 + (width/2) - HNDL_OFFSET;
+    gx_line->handles[1].y = y1 - HNDL_SIZE - HNDL_OFFSET;
+    
+    gx_line->handles[2].x = x2 + HNDL_OFFSET;
+    gx_line->handles[2].y = y1 - HNDL_SIZE - HNDL_OFFSET;
+    
+    gx_line->handles[3].x = x2 + HNDL_OFFSET;
+    gx_line->handles[3].y = y1+(height/2) -HNDL_OFFSET;
+    
+    gx_line->handles[4].x = x2 + HNDL_OFFSET;
+    gx_line->handles[4].y = y2 + HNDL_OFFSET;
+    
+    gx_line->handles[5].x = x1 + (width/2) - HNDL_OFFSET;
+    gx_line->handles[5].y = y2 + HNDL_OFFSET;
+    
+    gx_line->handles[6].x = x1 - HNDL_OFFSET - HNDL_SIZE;
+    gx_line->handles[6].y = y2 + HNDL_OFFSET;
+    
+    gx_line->handles[7].x = x1 - HNDL_OFFSET - HNDL_SIZE;
+    gx_line->handles[7].y = y1+(height/2) -HNDL_OFFSET;
+}
+
+static void line_move( GXObjPtr line, XEvent *event ){
+    static int x = 0, y = 0;
+    GXLinePtr line_data = (GXLinePtr)line->data;
+    int i;
+
+    if( x && y ) {
+        XDrawLines( XtDisplay(GxDrawArea),
+        XtWindow(GxDrawArea), rubberGC,
+        line_data->pts, line_data->num_pts,
+        CoordModeOrigin );
+    } else {
+        /* our first time through */
+        (*line->erase)( line );
+        x = event ? event->xbutton.x : 0;
+        y = event ? event->xbutton.y : 0;
+    }
+
+    if( event ) {
+        for( i = 0; i < line_data->num_pts; i++ ) {
+            line_data->pts[i].x += (event->xbutton.x - x);
+            line_data->pts[i].y += (event->xbutton.y - y);
+        }
+        /*
+        * draw rubberband line
+        */
+        XDrawLines( XtDisplay(GxDrawArea),
+                    XtWindow(GxDrawArea), rubberGC,
+                        line_data->pts, line_data->num_pts,
+                        CoordModeOrigin );
+        x = event->xbutton.x;
+        y = event->xbutton.y;
+    } else {
+        x = 0;
+        y = 0;
+    }
+}
+
+static void line_scale( GXObjPtr line, XEvent *event ){
+
+    static GXLinePtr tmp_data = NULL;
+
+    GXLinePtr line_data = (GXLinePtr) line ->data;
+
+    if( tmp_data ) {
+        XDrawLines( XtDisplay (GxDrawArea),
+                    XtWindow(GxDrawArea), rubberGC,
+                    tmp_data->pts, tmp_data->num_pts,
+                    CoordModeOrigin );
+
+    } else {
+        /* our first time... */
+        (*line ->erase)( line );
+
+        tmp_data = (GXLinePtr)XtNew(GXLine) ;
+        tmp_data->num_pts = line_data->num_pts;
+        tmp_data->pts = (XPoint *)
+            XtMalloc( sizeof(XPoint) * tmp_data->num_pts );
+
+        get_bounds( line_data->pts, line_data->num_pts,
+                    &OrigX, &OrigY, &ExntX, &ExntY );
+    }
+
+    if( event ) {
+        memcpy( (char *)tmp_data->pts, (char *)line_data->pts,
+                sizeof(XPoint) * tmp_data->num_pts );
+
+        apply_delta( tmp_data->pts, tmp_data->num_pts,
+            FixedX - event->xbutton.x,
+            FixedY - event->xbutton.y );
+
+        XDrawLines( XtDisplay(GxDrawArea) ,
+                    XtWindow(GxDrawArea), rubberGC,
+                    tmp_data->pts, tmp_data->num_pts,
+                    CoordModeOrigin );
+    } else {
+        if( tmp_data ) {
+            memcpy( (char *)line_data->pts,
+                    (char *)tmp_data->pts,
+                    sizeof (XPoint) * line_data->num_pts );
+
+            tFree((char *)tmp_data->pts);
+            XtFree((char *)tmp_data);
+            tmp_data = NULL;
+        }
+    }
+}
+
+static void line_copy( GXObjPtr line )
+{
+    int i;
+    GXLinePtr temp_data;
+    GXLinePtr line_data = (GXLinePtr)line->data;
+    
+    (*line->deselect)( line );
+
+    temp_data = (GXLine *)XtNew(GXLine);
+    temp_data->num_pts = line_data->num_pts;
+    temp_data->pts = (XPoint *)
+        XtMalloc(sizeof(XPoint) * temp_data->num_pts ); 
+
+    for( i = 0; i < temp_data->num_pts; i++ ) {
+        temp_data->pts[i].x = line_data->pts[i].x + OFFSET;
+        temp_data->pts[i].y = line_data->pts[i].y + OFFSET;
+    }
+    create_line( NULL, temp_data );
+    XtFree((char *)temp_data );
+}    
+
+static void line_save( FILE *fp, GXObjPtr obj ){
+    int i;
+    GXLinePtr line = (GXLinePtr)obj ->data;
+
+    fprintf( fp, "LINE [numpts x y x y ...J\n" );
+
+    fprintf( fp, "%sd\n", line->num_pts );
+
+    for( i = 0; i < line->num_pts; i++ ) {
+        fprintf( fp, "%d %d\n",
+        line ->pts[i].x, line->pts[i].y );
+    }
+}
 
 
+void gxLineLoad( FILE *fp, GxXObjPtr obj ){
+    int i;
+    GXLine line;
+    fscanf( fp, "%d\n", &line.num_pts );
+    line.pts = (XPoint *)
+
+    XtMalloc(sizeof(XPoint) * line.num_pts);
+
+    for( i = 0; i < line.num_pts; i++ ) {
+        fscanf( fp, "%hd %hd\n",
+            &line.pts[i].x, &line.pts[i].y );
+    }
+    create_line( obj, &line );
+}
 void gx_line( XEvent *event )
 {
 
@@ -231,15 +414,15 @@ void gx_line( XEvent *event )
 
 void gx_pencil( XEvent *event )
 {
-    printf( “draw freestlye\n” );
+    printf( "draw freestlye\n" );
 }
 void gx_arrow( XEvent *event )
 {
-    printf( “draw an arrow\n” );
+    printf( "draw an arrow\n" );
 }
 void gx_box( XEvent *event )
 {
-    printf( “draw a box\n” );
+    printf( "draw a box\n" );
 }
 
 /**

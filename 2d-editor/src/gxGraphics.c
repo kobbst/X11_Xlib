@@ -12,6 +12,44 @@
 #include "../include/gxGraphics.h"
 #include "../include/gxIcons.h"
 #include "../include/gxBitmaps.h"
+#include "grid.xbm"
+
+Cursor gxCrosshair;
+Cursor gxPencil;
+Cursor gxEdit;
+Cursor gxNormal;
+Cursor gxTextI;
+Cursor gxMove;
+Cursor gxScale;
+
+void initializeGX( void ){
+    
+    Pixel color;
+    Display *dsp = XtDisplay (GxDrawArea);
+    XtVaGetValues( GxStatusBar, XtNbackground, &color, NULL );
+
+    gxObjHeader = NULL;
+    gxObjCurrent = NULL;
+
+    gxCrosshair = XCreateFontCursor (dsp, XC_crosshair);
+    gxPencil = XCreateFontCursor (dsp, XC_pencil);
+    gxEdit = XCreateFontCursor (dsp, XC_cross);
+    gxTextI = XCreateFontCursor (dsp, XC_xterm);
+    gxScale = XCreateFontCursor (dsp, XC_dotbox);
+    gxMove = XCreateFontCursor (dsp, XC_hand1);
+    gxNormal = XCreateFontCursor (dsp, XC_top_left_arrow);
+
+    rubberGC = XCreateGC (XtDisplay (GxDrawArea),
+                            DefaultRootWindow(XtDisplay (GxDrawArea)), 0, NULL );
+
+    XSetForeground( XtDisplay (GxDrawArea), rubberGC, color );
+    XSetFunction( XtDisplay (GxDrawArea), rubberGC, GXxor );
+    XSetwindowBackgroundPixmap(XtDisplay(GxDrawArea),
+                                XtwWindow(GxDrawArea), GxDrawAreaBG) ;
+
+    FixedX = FixedY = OrigX = OrigY = ExntX = ExntY = 0;
+
+}
 
 static GxIconData gxDrawIcons[] = {
     { &line_icon, (void (*)(void))gx_line,
@@ -188,3 +226,34 @@ Pixmap create_pixmap( Widget w, XbmDataPtr data )
 /**
 ** end of gxGraphics.c
 */
+void set_cursor( CursorMode mode )
+{
+    Cursor new_cursor;
+    switch( mode ) {
+        case LINE_MODE:
+            new_cursor = gxCrosshair;
+            break;
+        case PENCIL_MODE:
+            new_cursor = gxPencil;
+            break;
+        case EDIT_MODE:
+            new_cursor = gxEdit;
+            break;
+        case TEXT_MODE:
+            new_cursor = gxTextI;
+            break;
+        case SCALE_MODE:
+            new_cursor = gxScale;
+            break;
+        case MOVE_MODE:
+            new_cursor = gxMove;
+            break;
+        case NORMAL_MODE:
+        default:
+            new_cursor = gxNormal;
+            break;
+    }
+    XDefineCursor( XtDisplay(GxDrawArea),
+                   XtWindow(GxDrawArea), new_cursor );
+    XFlush( XtDisplay(GxDrawArea) );
+}
