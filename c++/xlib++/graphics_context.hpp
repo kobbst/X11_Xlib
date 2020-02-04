@@ -26,6 +26,7 @@
 #ifndef _xlib_graphics_context_class_
 #define _xlib_graphics_context_class_
 
+#include <X11/Xlib.h>
 #include "display.hpp"
 #include "window.hpp"
 #include "exceptions.hpp"

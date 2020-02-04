@@ -1,6 +1,7 @@
 //
 // example5.cpp
 //
+#include <X11/Xlib.h>
 #include <iostream>
 #include "xlib++/display.hpp"
 #include "xlib++/window.hpp"
@@ -25,7 +26,7 @@ class main_window : public window
 
 };
 
-main()
+int main()
 {
   try
     {
