@@ -1,7 +1,7 @@
 //
 // example5.cpp
 //
-
+#include <iostream>
 #include "xlib++/display.hpp"
 #include "xlib++/window.hpp"
 #include "xlib++/graphics_context.hpp"

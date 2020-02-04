@@ -55,8 +55,7 @@ static char *get_creation_text( void ){
                                         GxDrawArea,
                                         XtNwidth, 115,
                                         XtNheight, 70,
-                                        XtNlabel,
-                                        "Enter Text:",
+                                        XtNlabel, "Enter Text:",
                                         XtNvalue, "",
                                         NULL );
     XawDialogAddButton( dialog, " Ok ",  close_dialog, dialog );

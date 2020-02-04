@@ -4,6 +4,7 @@
 
 #include <X11/Xlib.h>
 #include <unistd.h>
+#include <iostream>
 
 // our stuff
 #include "xlib++/display.hpp"

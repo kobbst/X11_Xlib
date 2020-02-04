@@ -32,7 +32,7 @@
 #include "color.hpp"
 #include "shapes.hpp"
 #include <vector>
-
+#include <iostream>
 
 namespace xlib
 {
@@ -130,10 +130,7 @@ namespace xlib
 	  int direction = 0, font_ascent = 0, font_descent = 0;
 	  XCharStruct char_struct;
 
-	  XQueryTextExtents ( m_display,
-			      XGContextFromGC(m_gc),
-			      text.c_str(),
-			      text.size(),
+	  XQueryTextExtents ( m_xlib++/graphics_context.hpp:165:13: ),
 			      &direction,
 			      &font_ascent,
 			      &font_descent,

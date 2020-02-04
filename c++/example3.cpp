@@ -1,7 +1,7 @@
 //
 // example3.cpp
 //
-
+#include <iostream>
 #include "xlib++/display.hpp"
 #include "xlib++/window.hpp"
 using namespace xlib;

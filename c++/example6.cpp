@@ -2,6 +2,8 @@
 // example5.cpp
 //
 
+#include <iostream>
+#include <vector>
 #include "xlib++/display.hpp"
 #include "xlib++/window.hpp"
 #include "xlib++/graphics_context.hpp"
@@ -49,7 +51,7 @@ hello_button::hello_button ( main_window& w )
 void hello_button::on_click() { m_parent.on_hello_click(); }
 
 
-main()
+int main()
 {
   try
     {
