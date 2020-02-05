@@ -53,8 +53,7 @@ namespace xlib
     public:
 
       line ( point point1, point point2 )
-	: m_point1 ( point1 ),
-	m_point2 ( point2 )
+	          : m_point1 ( point1 ), 	m_point2 ( point2 )
 	{
 	}
       ~line(){}
@@ -71,11 +70,11 @@ namespace xlib
     {
     public:
       rectangle ( point origin, int width, int height )
-	: m_origin ( origin ),
-	m_width ( width ),
-	m_height ( height )
-	{
-	}
+        : m_origin ( origin ),
+        m_width ( width ),
+        m_height ( height )
+        {
+        }
       ~rectangle() {}
 
       point origin() { return m_origin; }

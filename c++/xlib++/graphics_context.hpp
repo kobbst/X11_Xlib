@@ -26,38 +26,28 @@
 #ifndef _xlib_graphics_context_class_
 #define _xlib_graphics_context_class_
 
-#include <X11/Xlib.h>
 #include "display.hpp"
 #include "window.hpp"
 #include "exceptions.hpp"
 #include "color.hpp"
 #include "shapes.hpp"
 #include <vector>
-#include <iostream>
+
 
 namespace xlib
 {
 
   class graphics_context
     {
-    public:
-      graphics_context ( display& d,
-			 int window_id )
-	: m_display ( d ),
-	m_window_id ( window_id )
+    public: graphics_context (display& d, int window_id ) : m_display ( d ), m_window_id ( window_id )
 	{
 	  XGCValues values;
 	  values.background = 1;
 	  m_gc = 0;
-	  m_gc = XCreateGC ( m_display,
-			     m_window_id,
-			     GCBackground,
-			     &values );
+	  m_gc = XCreateGC ( m_display, m_window_id, GCBackground, &values );
 
 	  if ( m_gc == 0 )
 	    {
-	      throw create_graphics_context_exception
-		( "Could not create the graphics context." );
 	    }
 	};
 
@@ -66,129 +56,158 @@ namespace xlib
 
       // drawing primitives
 
-      void draw_line ( line l )
-	{
-	  XDrawLine ( m_display,
-		      m_window_id,
-		      m_gc,
-		      l.point1().x(),
-		      l.point1().y(),
-		      l.point2().x(),
-		      l.point2().y() );
-	}
+		void draw_line ( line l )
+		{
+		XDrawLine ( m_display,
+				m_window_id,
+				m_gc,
+				l.point1().x(),
+				l.point1().y(),
+				l.point2().x(),
+				l.point2().y() );
+		}
 
 
-      void draw_rectangle ( rectangle rect )
-	{
-	  XDrawRectangle ( m_display,
-			   m_window_id,
-			   m_gc,
-			   rect.origin().x(),
-			   rect.origin().y(),
-			   rect.width(),
-			   rect.height() );
-	}
+		void draw_rectangle ( rectangle rect )
+		{
+		XDrawRectangle ( m_display,
+				m_window_id,
+				m_gc,
+				rect.origin().x(),
+				rect.origin().y(),
+				rect.width(),
+				rect.height() );
+		}
 
-      void draw_text ( point origin, std::string text )
-	{
-	  XDrawString ( m_display,
-			m_window_id,
-			m_gc,
-			origin.x(),
-			origin.y(),
-			text.c_str(),
-			text.size() );
-	}
+		void draw_text ( point origin, std::string text )
+		{
+		XDrawString ( m_display,
+				m_window_id,
+				m_gc,
+				origin.x(),
+				origin.y(),
+				text.c_str(),
+				text.size() );
+		}
 
-      void fill_rectangle ( rectangle rect )
-	{
-	  XFillRectangle ( m_display,
-			   m_window_id,
-			   m_gc,
-			   rect.origin().x(),
-			   rect.origin().y(),
-			   rect.width(),
-			   rect.height() );
-	}
+		void fill_rectangle ( rectangle rect )
+		{
+		XFillRectangle ( m_display,
+				m_window_id,
+				m_gc,
+				rect.origin().x(),
+				rect.origin().y(),
+				rect.width(),
+				rect.height() );
+		}
 
+		void set_lineAttributes (unsigned int line_width, int line_style, int cap_style, int join_style )
+		{
+			XSetLineAttributes ( m_display, m_gc, line_width, line_style, cap_style, join_style);
+			/* 
+			line_width 	Specifies the line-width you want to set for the specified GC.
+			line_style 	Specifies the line-style you want to set for the specified GC. 
+						You can pass LineSolid, LineOnOffDash, or LineDoubleDash.
+			cap_style 	Specifies the line-style and cap-style you want to set for the specified GC. 
+						You can pass CapNotLast, CapButt, CapRound, or CapProjecting.
+			join_style 	Specifies the line join-style you want to set for the specified GC. 
+						You can pass JoinMiter, JoinRound, or JoinBevel.  
+			*/
 
-      void set_foreground ( color& c )
-	{
-	  XSetForeground ( m_display,
-			   m_gc,
-			   c.pixel() );
-	}
-
-      void set_background ( color& c )
-	{
-	  XSetBackground ( m_display,
-			   m_gc,
-			   c.pixel() );
-	}
-
-      rectangle get_text_rect ( std::string text )
-	{
-	  int direction = 0, font_ascent = 0, font_descent = 0;
-	  XCharStruct char_struct;
-
-	  XQueryTextExtents ( m_xlib++/graphics_context.hpp:165:13: ),
-			      &direction,
-			      &font_ascent,
-			      &font_descent,
-			      &char_struct );
-
-	  rectangle rect ( point(0,0),
-			   char_struct.rbearing - char_struct.lbearing,
-			   char_struct.ascent - char_struct.descent );
-
-	  return rect;
-
-	}
+		}
 
 
-      std::vector<int> get_character_widths ( std::string text )
-	{
+		void set_foreground ( color& c )
+		{
+			XSetForeground ( m_display, m_gc, c.pixel() );
+		}
 
-	  // GContext gc_id = XGContextFromGC ( (GC)gc.id() );
+		void set_foreground ( int Red, int Green, int Blue)
+		{
+			XSetForeground ( m_display, m_gc, Blue + (Green<<8) + (Red<<16) );
+		}
 
-	  std::vector<int> char_widths;
+		void set_background ( color& c )
+		{
+			XSetBackground ( m_display, m_gc, c.pixel() );
+		}
 
-	  XFontStruct * font = XQueryFont ( m_display, (GContext)id() );
+		void set_background ( int Red, int Green, int Blue)
+		{
+			XSetBackground ( m_display, m_gc, Blue + (Green<<8) + (Red<<16));
+		}
 
-	  for ( std::string::const_iterator it = text.begin();
-		it != text.end();
-		it++ )
-	    {
-	      std::string temp;
-	      temp += it;
+		rectangle get_text_rect ( std::string text )
+		{
+		int direction = 0, font_ascent = 0, font_descent = 0;
+		XCharStruct char_struct;
 
-	      int width = XTextWidth ( font,
-				       temp.c_str(),
-				       1 );
+		XQueryTextExtents ( m_display,
+					XGContextFromGC(m_gc),
+					text.c_str(),
+					text.size(),
+					&direction,
+					&font_ascent,
+					&font_descent,
+					&char_struct );
 
-	      char_widths.push_back ( width );
-	    }
+		rectangle rect ( point(0,0),
+				char_struct.rbearing - char_struct.lbearing,
+				char_struct.ascent - char_struct.descent );
 
-	  return char_widths;
-	}
+		return rect;
 
-      int get_text_height ()
-	{
-	  XFontStruct * font = XQueryFont ( m_display, (GContext)id() );
+		}
 
-	  if ( font )
-	    {
-	      return font->max_bounds.ascent + font->max_bounds.descent;
-	    }
-	  else
-	    {
-	      return 0;
-	    }
-	}
+
+		std::vector<int> get_character_widths ( std::string text )
+		{
+
+		// GContext gc_id = XGContextFromGC ( (GC)gc.id() );
+
+		std::vector<int> char_widths;
+
+		XFontStruct * font = XQueryFont ( m_display, (GContext)id() );
+
+		for ( std::string::const_iterator it = text.begin();
+			it != text.end();
+			it++ )
+			{
+			std::string temp;
+			temp += *it;
+
+			int width = XTextWidth ( font,
+						temp.c_str(),
+						1 );
+
+			char_widths.push_back ( width );
+			}
+
+		return char_widths;
+		}
+
+		int get_text_height ()
+		{
+		XFontStruct * font = XQueryFont ( m_display, (GContext)id() );
+
+		if ( font )
+			{
+			return font->max_bounds.ascent + font->max_bounds.descent;
+			}
+		else
+			{
+			return 0;
+			}
+		}
 
       long id() { return XGContextFromGC(m_gc); }
 
     private:
+
+		unsigned long _RGB(int r,int g, int b)
+		{
+			return b + (g<<8) + (r<<16);
+		}
 
       display& m_display;
       int m_window_id;

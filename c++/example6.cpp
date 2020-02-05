@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <vector>
+#include <exception>
 #include "xlib++/display.hpp"
 #include "xlib++/window.hpp"
 #include "xlib++/graphics_context.hpp"
@@ -62,7 +62,7 @@ int main()
       main_window w ( events ); // top-level
       events.run();
     }
-  catch ( exception_with_text& e )
+  catch ( std::exception& e )
     {
       std::cout << "Exception: " << e.what() << "\n";
     }

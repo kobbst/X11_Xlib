@@ -187,8 +187,6 @@ namespace xlib
 
 	      if ( m_window == 0 )
 		{
-		  throw create_window_exception
-		    ( "could not create the window" );
 		}
 
 	      on_create();

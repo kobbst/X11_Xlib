@@ -17,11 +17,17 @@ class main_window : public window
 
   void on_expose ()
   {
-    graphics_context gc ( get_display(),
-			  id() );
+    graphics_context gc ( get_display(), id() );
 
-    gc.draw_line ( line ( point(0,0), point(50,50) ) );
-    gc.draw_text ( point(0, 70), "I'm drawing!!" );
+    gc.draw_line ( line ( point(0,0), point(150,150) ) );
+    gc.draw_line ( line ( point(150,150), point(250,50) ) );
+    gc.set_background(20,255,20);
+    gc.draw_rectangle(rectangle (point(0,0),100, 100));
+    
+    gc.set_lineAttributes(10, LineSolid, CapRound, JoinMiter);
+    gc.set_foreground(55,0,10);
+    gc.fill_rectangle(rectangle (point(100,0),100, 100));
+    // gc.draw_text ( point(0, 70), "I'm drawing!!" );
   }
 
 };
@@ -37,7 +43,7 @@ int main()
       main_window w ( events ); // top-level
       events.run();
     }
-  catch ( exception_with_text& e )
+  catch ( std::exception& e )
     {
       std::cout << "Exception: " << e.what() << "\n";
     }

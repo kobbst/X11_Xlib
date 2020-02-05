@@ -38,8 +38,7 @@ namespace xlib
     {
     public:
 
-      color ( display& d, short red, short green, short blue )
-	: m_display ( d )
+      color ( display& d, short red, short green, short blue ) : m_display ( d )
 	{
 	  m_map = DefaultColormap ( d.operator Display*(), 0 );
 	  set_color ( red, green, blue );
@@ -71,11 +70,7 @@ namespace xlib
 	  unsigned long pixels[2];
 	  pixels[0] = pixel();
 
-	  XFreeColors ( m_display,
-			m_map,
-			pixels,
-			1,
-			0 );
+	  XFreeColors ( m_display, m_map, pixels, 1, 0 );
 	}
 
       void set_color ( short red, short green, short blue )
@@ -87,7 +82,6 @@ namespace xlib
 
 	  if ( ! XAllocColor ( m_display, m_map, &m_color ) )
 	    {
-	      throw create_color_exception ( "Could not create the color." );
 	    }
 	}
 

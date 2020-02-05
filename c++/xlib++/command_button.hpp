@@ -116,8 +116,6 @@ namespace xlib
 
 	  if ( m_window == 0 )
 	    {
-	      throw create_button_exception 
-		( "could not create the command button" );
 	    }
 
 	  m_parent.get_event_dispatcher().register_window ( this );

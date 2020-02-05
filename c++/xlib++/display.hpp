@@ -27,7 +27,7 @@
 #define _xlib_display_class_
 
 #include <string>
-#include <sstream>
+#include <iostream>
 #include <X11/Xlib.h>
 #include "exceptions.hpp"
 
@@ -44,9 +44,7 @@ namespace xlib
 
 	  if ( ! m_display )
 	    {
-	      std::ostringstream ost;
-	      ost << "Could not open display '" << name << "'.";
-	      throw open_display_exception ( ost.str() );
+              std::string ost("Could not open display");
 	    }
 	  else
 	    {

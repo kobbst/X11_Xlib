@@ -2,6 +2,7 @@
 // example4.cpp
 //
 #include <iostream>
+#include <exception>
 #include "xlib++/display.hpp"
 #include "xlib++/window.hpp"
 using namespace xlib;
@@ -18,7 +19,7 @@ class main_window : public window
   }
 };
 
-main()
+int main()
 {
   try
     {
@@ -29,7 +30,8 @@ main()
       main_window w ( events ); // top-level
       events.run();
     }
-  catch ( exception_with_text& e )
+  // catch ( exception_with_text& e )
+  catch ( std::exception& e )
     {
       std::cout << "Exception: " << e.what() << "\n";
     }
